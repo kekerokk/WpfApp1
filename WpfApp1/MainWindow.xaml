@@ -1,0 +1,61 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        mc:Ignorable="d"
+        Title="Торговый автомат по приготовлению еды и напитков" Height="1024" Width="700" Background="#FF848484" WindowStyle="ThreeDBorderWindow">
+
+    <Canvas MinHeight="1024" MaxHeight="1980" MinWidth="700" MaxWidth="1024" Height="1024" Width="700">
+        <Button x:Name="AddLatteButton"  Content="Latte" Height="30" Width="130" Canvas.Left="64" Canvas.Top="260" Click="BeverageSelect" Tag="0"/>
+        <Button x:Name="AddCappuccinoButton"  Content="Cappuccino" Height="30" Width="131" Canvas.Left="63" Canvas.Top="326" Click="BeverageSelect" Tag="1"/>
+        <Button x:Name="AddExpressoButton"  Content="Expresso" Height="30" Width="131" Canvas.Left="63" Canvas.Top="391" Click="BeverageSelect" Tag="2"/>
+        <Button x:Name="ComprehensiveSet" Content="Комплексный набор" Canvas.Top="58" Canvas.Left="247" Width="206" Height="78" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="Напитки:" FontSize="18" Canvas.Left="83" Canvas.Top="217" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Label Content="100 р." FontSize="16" Canvas.Left="102" Canvas.Top="290"/>
+        <Label Content="100 р." FontSize="16" Canvas.Left="102" Canvas.Top="356"/>
+        <Label Content="100 р." FontSize="16" Canvas.Left="102" Canvas.Top="421"/>
+        <Button x:Name="AddBlackTeaButton" Content="Чай черный" Height="30" Width="131" Canvas.Left="63" Canvas.Top="457" Click="BeverageSelect" Tag="3"/>
+        <Label Content="50 р." FontSize="16" Canvas.Left="107" Canvas.Top="487"/>
+        <Button x:Name="AddGreenTeaButton" Content="Чай зеленый" Height="30" Width="131" Canvas.Left="63" Canvas.Top="523" Click="BeverageSelect" Tag="4"/>
+        <Label Content="50 р."  FontSize="16" Canvas.Left="107" Canvas.Top="553"/>
+        <Label Content="Добавки:" FontSize="18" Canvas.Top="595" HorizontalAlignment="Center" VerticalAlignment="Top" Width="98" FontWeight="Bold" Canvas.Left="301"/>
+        <TextBox x:Name="PortionsOfSugar" TextWrapping="Wrap" Text="0" Width="47" TextAlignment="Center" Canvas.Left="105" Canvas.Top="686" IsEnabled="False"/>
+        <Label Content="Сахар"  FontSize="16" Canvas.Left="103" Canvas.Top="650"/>
+        <Button x:Name="MinusSugar" Content="-" Click="SugarChanging"  Width="40" Height="40" RenderTransformOrigin="0.5,0.5" FontSize="20" Canvas.Left="58" Canvas.Top="675" IsEnabled="False"/>
+        <Button x:Name="PlusSugar" Content="+" Click="SugarChanging"  Width="40" Height="40" RenderTransformOrigin="0.5,0.5" FontSize="20" Canvas.Left="161" Canvas.Top="675" IsEnabled="False"/>
+        <Button x:Name="AddSugar" Content="Добавить"  Width="100" Height="20" Canvas.Left="78" Canvas.Top="720" IsEnabled="False" Tag="0" Click="AdditiveToBeverageSelect"/>
+        <Label Content="Еда:" FontSize="18" Canvas.Right="87" Canvas.Top="217" Canvas.Left="558" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button x:Name="AddBun" Content="Булочка" Height="30" Width="130" Canvas.Left="513" Canvas.Top="260" Tag="0" Click="FoodSelect"/>
+        <Label Content="30 р." FontSize="16" Canvas.Left="556" Canvas.Top="290" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Button x:Name="AddBread" Click="FoodSelect" Content="Хлеб" Height="30" Width="130" Canvas.Left="513" Canvas.Top="326" HorizontalAlignment="Center" VerticalAlignment="Top" Tag="1"/>
+        <Label Content="10 р." FontSize="16" Canvas.Left="556" Canvas.Top="356" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="AddJam" Click="FoodSelect" Content="Джем" Height="30" Width="130" Canvas.Left="513" Canvas.Top="391" HorizontalAlignment="Center" VerticalAlignment="Top" Tag="2"/>
+        <Label Content="40 р." FontSize="16" Canvas.Left="556" Canvas.Top="421" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Label Content="150 р." Canvas.Left="324" Canvas.Top="136" Width="52" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.519,-0.254"/>
+        <Button x:Name="AddHam" Content="Добавить ветчину" Height="30" Width="130" Canvas.Left="513" Canvas.Top="664" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="False" Tag="0" Click="AdditiveToFoodSelect"/>
+        <Label Content="20 р." FontSize="16" Canvas.Left="556" Canvas.Top="695" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="AddCheese" Content="Добавить сыр" Height="30" Width="130" Canvas.Left="513" Canvas.Top="741" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Tag="1" Click="AdditiveToFoodSelect"/>
+        <Label Content="20 р." FontSize="16" Canvas.Left="556" Canvas.Top="771" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="AddMilk" Content="Добавить Молоко" Height="30" Width="130" Canvas.Left="64" Canvas.Top="756" IsEnabled="False" HorizontalAlignment="Left" VerticalAlignment="Top" Tag="1" Click="AdditiveToBeverageSelect"/>
+        <Label Content="15 р." FontSize="16" Canvas.Left="107" Canvas.Top="787" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button x:Name="AddSyrup" Content="Добавить Сироп" Height="30" Width="130" Canvas.Left="64" Canvas.Top="827" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Tag="2" Click="AdditiveToBeverageSelect"/>
+        <Label Content="15 р." FontSize="16" Canvas.Left="107" Canvas.Top="858" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <TextBlock x:Name="OrderTextBlock" Canvas.Left="247" TextWrapping="Wrap" Canvas.Top="243" Height="209" Width="206" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <Run Text="              Заказ:" />
+            <LineBreak/>
+            <Run x:Name="OrderBeverageText" />
+            <LineBreak/>
+            <Run x:Name="OrderFoodText" />
+        </TextBlock>
+        <TextBlock Canvas.Left="249" TextWrapping="Wrap" Canvas.Top="919" Height="23" Width="202" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold">
+            <Run Text="Стоимость заказа:"/>
+            <Run x:Name="OrderValue" Text="0"/>
+            <Run Text="р."/>
+        </TextBlock>
+        <Button Content="Выдать" Canvas.Left="528" Canvas.Top="916" Height="30" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Click="GetOrder"/>
+    </Canvas>
+
+
+</Window>
