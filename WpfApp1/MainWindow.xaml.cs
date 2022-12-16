@@ -20,18 +20,19 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         private Controller _controller;
+        private bool _isComprehensiveSetChoised;
 
         
         public MainWindow()
         {
             InitializeComponent();
-            ComprehensiveSet.Content = $"{ComprehensiveSet.Content}.\nнапиток с добавкой\n+ еда с добавкой";
 
             Model model = new Model();
             _controller = new Controller(model);
 
             model.OnBeverageOrderChanging += RefreshBeverageOrder;
             model.OnFoodOrderChanging += RefreshFoodOrder;
+            model.GettingSugarInfo += GetPortionsOfSugar;
         }
         private void BeverageSelect(object sender, RoutedEventArgs e)
         {
@@ -76,7 +77,10 @@ namespace WpfApp1
                 return;
             }
 
-            btn.IsEnabled = false;
+            if (_isComprehensiveSetChoised)
+                DisableBeverageAdditives();
+            else
+                btn.IsEnabled = false;
 
             _controller.AdditiveToBeverageChoosed(Convert.ToUInt16(btn.Tag));
         }
@@ -91,11 +95,17 @@ namespace WpfApp1
                 return;
             }
 
-            btn.IsEnabled = false;
-            if (btn.Name == "AddSugar")
+
+            if (_isComprehensiveSetChoised)
+                DisableFoodAdditives();
+            else
             {
-                PlusSugar.IsEnabled = false;
-                MinusSugar.IsEnabled = false;
+                btn.IsEnabled = false;
+                if (btn.Name == "AddSugar")
+                {
+                    PlusSugar.IsEnabled = false;
+                    MinusSugar.IsEnabled = false;
+                }
             }
 
             _controller.AdditiveToFoodChoosed(Convert.ToUInt16(btn.Tag));
@@ -149,6 +159,17 @@ namespace WpfApp1
             AddBread.IsEnabled = false;
             AddJam.IsEnabled = false;
         }
+        private void DisableBeverageAdditives()
+        {
+            AddSugar.IsEnabled = false;
+            AddMilk.IsEnabled = false;
+            AddSyrup.IsEnabled = false;
+        }
+        private void DisableFoodAdditives()
+        {
+            AddBun.IsEnabled = false;
+            AddCheese.IsEnabled = false;
+        }
         private void EnableFoodAdditives(string foodName)
         {
             if (foodName == "Булочка" || foodName == "Хлеб")
@@ -182,6 +203,21 @@ namespace WpfApp1
         {
             OrderFoodText.Text += $"{productName}\n";
             OrderValue.Text = $"{cost}"; 
+        }
+        private void ButtonComprehensiveSetLoaded(object sender, RoutedEventArgs e)
+        {
+            ComprehensiveSet.Content = $"{ComprehensiveSet.Content}.\nнапиток с добавкой\n+ еда с добавкой";
+        }
+
+        private void ComprehensiveSetChoised(object sender, RoutedEventArgs e)
+        {
+            ComprehensiveSet.IsEnabled = false;
+            _isComprehensiveSetChoised = true;
+            _controller.ComprehensiveSetChoosed();
+        }
+        private int GetPortionsOfSugar()
+        {
+            return Convert.ToInt16(PortionsOfSugar.Text);
         }
     }
 }

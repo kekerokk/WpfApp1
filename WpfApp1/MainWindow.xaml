@@ -11,7 +11,7 @@
         <Button x:Name="AddLatteButton"  Content="Latte" Height="30" Width="130" Canvas.Left="64" Canvas.Top="260" Click="BeverageSelect" Tag="0"/>
         <Button x:Name="AddCappuccinoButton"  Content="Cappuccino" Height="30" Width="131" Canvas.Left="63" Canvas.Top="326" Click="BeverageSelect" Tag="1"/>
         <Button x:Name="AddExpressoButton"  Content="Expresso" Height="30" Width="131" Canvas.Left="63" Canvas.Top="391" Click="BeverageSelect" Tag="2"/>
-        <Button x:Name="ComprehensiveSet" Content="Комплексный набор" Canvas.Top="58" Canvas.Left="247" Width="206" Height="78" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Button x:Name="ComprehensiveSet" Content="Комплексный набор" Canvas.Top="58" Canvas.Left="247" Width="206" Height="78" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top" Loaded="ButtonComprehensiveSetLoaded" Click="ComprehensiveSetChoised"/>
         <Label Content="Напитки:" FontSize="18" Canvas.Left="83" Canvas.Top="217" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Label Content="100 р." FontSize="16" Canvas.Left="102" Canvas.Top="290"/>
         <Label Content="100 р." FontSize="16" Canvas.Left="102" Canvas.Top="356"/>
@@ -42,7 +42,7 @@
         <Label Content="15 р." FontSize="16" Canvas.Left="107" Canvas.Top="787" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="AddSyrup" Content="Добавить Сироп" Height="30" Width="130" Canvas.Left="64" Canvas.Top="827" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Tag="2" Click="AdditiveToBeverageSelect"/>
         <Label Content="15 р." FontSize="16" Canvas.Left="107" Canvas.Top="858" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <TextBlock x:Name="OrderTextBlock" Canvas.Left="247" TextWrapping="Wrap" Canvas.Top="243" Height="209" Width="206" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top">
+        <TextBlock x:Name="OrderTextBlock" Canvas.Left="247" TextWrapping="Wrap" Canvas.Top="243" Height="310" Width="206" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top">
             <Run Text="              Заказ:" />
             <LineBreak/>
             <Run x:Name="OrderBeverageText" />

@@ -11,8 +11,9 @@ namespace WpfApp1
 {
     internal class Model
     {
-        internal Action<string, int> OnBeverageOrderChanging;
-        internal Action<string, int> OnFoodOrderChanging;
+        public Action<string, int> OnBeverageOrderChanging;
+        public Action<string, int> OnFoodOrderChanging;
+        public Func<int> GettingSugarInfo;
 
         private int _orderValue = 0;
         private bool _isCompSetChoose;
@@ -73,6 +74,9 @@ namespace WpfApp1
             string additive = _additiveToBeverageList[index].GetName();
             int cost = _additiveToBeverageList[index].GetCost();
 
+            if (additive == "Сахар")
+                additive += $"({GettingSugarInfo?.Invoke()})";
+
             _order.AddCompositionToBeverage(additive);
             OrderCostChange(cost);
 
@@ -91,6 +95,7 @@ namespace WpfApp1
         public void ComprehensiveSetChoose()
         {
             _isCompSetChoose = true;
+            _orderValue = 150;
         }
         public void OrderCostChange(int cost)
         {

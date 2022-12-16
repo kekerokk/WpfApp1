@@ -86,14 +86,6 @@ namespace WpfApp1.Structs
         public Order()
         {
         }
-        /*public Order(Beverages beverage)
-        {
-            this.beverage = beverage;
-        }
-        public Order(Food food)
-        {
-            this.food = food;
-        }*/
         public void AddBeverageToOrder(Beverages beverage) => this.beverage = beverage;
         public void AddFoodToOrder(Food food) => this.food = food;
         public void AddCompositionToBeverage(string additive) => additivesToBeverage.Add(additive);
@@ -105,7 +97,10 @@ namespace WpfApp1.Structs
         {
             string additivesForBeverage = beverage.GetInfo();
             string additivesForFood = food.GetName();
-            string FoodName = food.GetName();
+            string beverageName = beverage.GetName();
+            string foodName = food.GetName();
+            string beverageOrder = "";
+            string foodOrder = "";
 
             foreach (string str in additivesToBeverage)
             {
@@ -117,13 +112,16 @@ namespace WpfApp1.Structs
                 additivesForFood += $" + {str}";
             }
 
-            if ((FoodName == "Хлеб" || FoodName == "Булочка") && (additivesForFood.Contains("Ветчина") || additivesForFood.Contains("Сыр")))
+            if ((foodName == "Хлеб" || foodName == "Булочка") && (additivesForFood.Contains("Ветчина") || additivesForFood.Contains("Сыр")))
             {
-                FoodName = "Бутерброд";
+                foodName = "Бутерброд";
             }
+            if(additivesForBeverage != "")
+                beverageOrder = $"{beverageName}({additivesForBeverage})\n";
+            if (additivesForFood != "")
+                foodOrder = $"{foodName}({additivesForFood})";
 
-            return $"{beverage.GetName()}({additivesForBeverage})\n" +
-            $"{FoodName}({additivesForFood})";
+            return $"{beverageOrder}{foodOrder}";
         }
     }
     interface IMenu
