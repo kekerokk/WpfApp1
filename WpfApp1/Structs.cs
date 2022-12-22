@@ -65,34 +65,21 @@ namespace WpfApp1.Structs
     }
     struct Order // отвечает за состав заказа в деталях
     {
-        /*private string name;
-        private string composition
-        {
-            set
-            {
-                if(composition.Contains("Хлеб") && (composition.Contains("Ветчина") || composition.Contains("Сыр")))
-                    name = "Бутерброд";
-            }
-            get
-            {
-                return composition;
-            }
-        }*/
-        private Beverages beverage;
+        private List<Beverages> beverageList  = new List<Beverages>();
         private List<string> additivesToBeverage = new List<string>();
-        private Food food;
+        private List<Food> foodList = new List<Food>();
         private List<string> additivesToFood = new List<string>();
 
         public Order()
         {
         }
-        public void AddBeverageToOrder(Beverages beverage) => this.beverage = beverage;
-        public void AddFoodToOrder(Food food) => this.food = food;
+        public void AddBeverageToOrder(Beverages beverage) => beverageList.Add(beverage);
+        public void AddFoodToOrder(Food food) => foodList.Add(food);
         public void AddCompositionToBeverage(string additive) => additivesToBeverage.Add(additive);
         public void AddCompositionToFood(string additive) => additivesToFood.Add(additive);
-        public string GetBeverageComposition() => beverage.GetInfo();
-        public string GetBeverageName() => beverage.GetName();
-        public string GetFoodName() => food.GetName();
+        public string GetBeverageComposition(int index) => beverageList[index].GetInfo();
+        public string GetBeverageName(int index) => beverageList[index].GetName();
+        public string GetFoodName(int index) => foodList[index].GetName();
         public override string ToString()
         {
             string additivesForBeverage = beverage.GetInfo();

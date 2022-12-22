@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Structs;
+using System.Diagnostics;
 
 namespace WpfApp1
 {
@@ -194,14 +195,31 @@ namespace WpfApp1
                 AddSyrup.IsEnabled = true;
             }
         }
-        private void RefreshBeverageOrder(string productName,int cost)
+        private void RefreshBeverageOrder(Beverages beverage, int index)
         {
-            OrderBeverageText.Text += $"{productName}\n" ;
-            OrderValue.Text = $"{cost}";
+            StackPanel elementsKitOfBeverage = new StackPanel();
+            elementsKitOfBeverage.Name = $"elementsKitOfBeverage{index}";
+            StackPanel expanderPanel = new StackPanel();
+            expanderPanel.Name = $"expanderPanel{index}";
+
+            Label beverageLabel = new Label();
+            Expander expndr = new Expander();
+
+            beverageLabel.FontSize = 16;
+            beverageLabel.Content = beverage.GetName();
+
+            elementsKitOfBeverage.Children.Add(beverageLabel);
+
+            expndr.Content = expanderPanel;
+            expndr.Header = "Добавки";
+
+            OrderBeverageStackPanel.Children.Add(elementsKitOfBeverage);
+
+            OrderValue.Text = $"{beverage.GetCost()}";
         }
         private void RefreshFoodOrder(string productName, int cost)
         {
-            OrderFoodText.Text += $"{productName}\n";
+            //OrderFoodText.Text += $"{productName}\n";
             OrderValue.Text = $"{cost}"; 
         }
         private void ButtonComprehensiveSetLoaded(object sender, RoutedEventArgs e)
@@ -218,6 +236,16 @@ namespace WpfApp1
         private int GetPortionsOfSugar()
         {
             return Convert.ToInt16(PortionsOfSugar.Text);
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            GoFillOrder.IsEnabled = true;
+        }
+
+        private void GoFillOrder_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

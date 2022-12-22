@@ -11,11 +11,11 @@ namespace WpfApp1
 {
     internal class Model
     {
-        public Action<string, int> OnBeverageOrderChanging;
+        public Action<Beverages, int> OnBeverageOrderChanging;
         public Action<string, int> OnFoodOrderChanging;
         public Func<int> GettingSugarInfo;
 
-        private int _orderValue = 0;
+        private int _orderValue = 0,_numberOfAvailableBeverage,_numberOfAvailableFood;
         private bool _isCompSetChoose;
 
         private Order _order = new Order();
@@ -57,7 +57,7 @@ namespace WpfApp1
             _order.AddBeverageToOrder(_beveragesList[index]);
             OrderCostChange(cost);
 
-            OnBeverageOrderChanging?.Invoke(beverage,_orderValue);
+            OnBeverageOrderChanging?.Invoke(_beveragesList[index],,_orderValue);
         }
         public void FoodChoose(int index)
         {

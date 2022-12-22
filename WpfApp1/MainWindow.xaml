@@ -11,7 +11,7 @@
         <Button x:Name="AddLatteButton"  Content="Latte" Height="30" Width="130" Canvas.Left="64" Canvas.Top="260" Click="BeverageSelect" Tag="0"/>
         <Button x:Name="AddCappuccinoButton"  Content="Cappuccino" Height="30" Width="131" Canvas.Left="63" Canvas.Top="326" Click="BeverageSelect" Tag="1"/>
         <Button x:Name="AddExpressoButton"  Content="Expresso" Height="30" Width="131" Canvas.Left="63" Canvas.Top="391" Click="BeverageSelect" Tag="2"/>
-        <Button x:Name="ComprehensiveSet" Content="Комплексный набор" Canvas.Top="58" Canvas.Left="247" Width="206" Height="78" FontWeight="Bold" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Top" Loaded="ButtonComprehensiveSetLoaded" Click="ComprehensiveSetChoised"/>
+        <Button x:Name="ComprehensiveSet" Content="Комплексный набор" Canvas.Top="20" Canvas.Left="472" Width="206" Height="78" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Top" Loaded="ButtonComprehensiveSetLoaded" Click="ComprehensiveSetChoised"/>
         <Label Content="Напитки:" FontSize="18" Canvas.Left="83" Canvas.Top="217" FontWeight="Bold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         <Label Content="100 р." FontSize="16" Canvas.Left="102" Canvas.Top="290"/>
         <Label Content="100 р." FontSize="16" Canvas.Left="102" Canvas.Top="356"/>
@@ -33,7 +33,7 @@
         <Label Content="10 р." FontSize="16" Canvas.Left="556" Canvas.Top="356" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Button x:Name="AddJam" Click="FoodSelect" Content="Джем" Height="30" Width="130" Canvas.Left="513" Canvas.Top="391" HorizontalAlignment="Center" VerticalAlignment="Top" Tag="2"/>
         <Label Content="40 р." FontSize="16" Canvas.Left="556" Canvas.Top="421" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <Label Content="150 р." Canvas.Left="324" Canvas.Top="136" Width="52" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" RenderTransformOrigin="0.519,-0.254"/>
+        <Label Content="150 р." Canvas.Left="549" Canvas.Top="98" Width="52" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.519,-0.254"/>
         <Button x:Name="AddHam" Content="Добавить ветчину" Height="30" Width="130" Canvas.Left="513" Canvas.Top="664" HorizontalAlignment="Center" VerticalAlignment="Top" IsEnabled="False" Tag="0" Click="AdditiveToFoodSelect"/>
         <Label Content="20 р." FontSize="16" Canvas.Left="556" Canvas.Top="695" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         <Button x:Name="AddCheese" Content="Добавить сыр" Height="30" Width="130" Canvas.Left="513" Canvas.Top="741" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Tag="1" Click="AdditiveToFoodSelect"/>
@@ -42,19 +42,29 @@
         <Label Content="15 р." FontSize="16" Canvas.Left="107" Canvas.Top="787" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Button x:Name="AddSyrup" Content="Добавить Сироп" Height="30" Width="130" Canvas.Left="64" Canvas.Top="827" IsEnabled="False" HorizontalAlignment="Center" VerticalAlignment="Top" Tag="2" Click="AdditiveToBeverageSelect"/>
         <Label Content="15 р." FontSize="16" Canvas.Left="107" Canvas.Top="858" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-        <TextBlock x:Name="OrderTextBlock" Canvas.Left="247" TextWrapping="Wrap" Canvas.Top="243" Height="310" Width="206" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top">
-            <Run Text="              Заказ:" />
-            <LineBreak/>
-            <Run x:Name="OrderBeverageText" />
-            <LineBreak/>
-            <Run x:Name="OrderFoodText" />
-        </TextBlock>
         <TextBlock Canvas.Left="249" TextWrapping="Wrap" Canvas.Top="919" Height="23" Width="202" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold">
             <Run Text="Стоимость заказа:"/>
             <Run x:Name="OrderValue" Text="0"/>
             <Run Text="р."/>
         </TextBlock>
         <Button Content="Выдать" Canvas.Left="528" Canvas.Top="916" Height="30" Width="100" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="16" Click="GetOrder"/>
+        <Label Content="Кол-во напитков:" Canvas.Left="30" Canvas.Top="35" FontSize="14"/>
+        <Label Content="Кол-во Еды:" Canvas.Left="161" Canvas.Top="35" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <TextBox x:Name="AmountOfNecessaryBeverage" Canvas.Left="47" TextWrapping="Wrap" Text="0" Canvas.Top="64" Width="87" MaxLength="1" HorizontalAlignment="Left" VerticalAlignment="Center" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="AmountOfNecesseryFood" Canvas.Left="160" TextWrapping="Wrap" Text="0" Canvas.Top="64" Width="87" MaxLength="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextChanged="TextBox_TextChanged"/>
+        <Button x:Name="GoFillOrder" Content="Выбрать" Canvas.Left="47" Canvas.Top="88" HorizontalAlignment="Center" VerticalAlignment="Top" Width="200" IsEnabled="False" Click="GoFillOrder_Click"/>
+        <GroupBox x:Name="OrderMenu" Height="350" Header="Заказ" FontSize="20" Width="200" Canvas.Left="250" Canvas.Top="234" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <ScrollViewer x:Name="OrderScrollViewer" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <StackPanel x:Name="OrderBeverageStackPanel">
+                        
+                    </StackPanel>
+                    <StackPanel x:Name="OrderFoodBeverageStackPanel">
+                        
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
     </Canvas>
 
 
